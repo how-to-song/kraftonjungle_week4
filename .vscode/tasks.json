@@ -3,13 +3,11 @@
     "tasks": [
         {
             "type": "shell",
-            "label": "C/C++: gcc build active file",
-            "command": "/usr/bin/gcc",
+            "label": "make: build active file",
+            "command": "make",
             "args": [
-                "-g",
-                "${file}",
-                "-o",
-                "${fileDirname}/${fileBasenameNoExtension}"
+                "-C", "${workspaceFolder}/Data-Structures",
+                "build/${fileDirnameBasename}/${fileBasenameNoExtension}"
             ],
             "options": {
                 "cwd": "${fileDirname}"

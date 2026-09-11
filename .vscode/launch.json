@@ -4,7 +4,7 @@
             "type": "cppdbg",
             "request": "launch",
             "name": "Debug C Program",
-            "program": "${fileDirname}/${fileBasenameNoExtension}",
+            "program": "${workspaceFolder}/Data-Structures/build/${fileDirnameBasename}/${fileBasenameNoExtension}",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
@@ -18,7 +18,7 @@
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "C/C++: gcc build active file"
+            "preLaunchTask": "make: build active file"
         }
     ],
     "version": "0.2.0"
