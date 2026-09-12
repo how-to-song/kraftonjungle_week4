@@ -103,6 +103,46 @@ int main()
 void frontBackSplitLinkedList(LinkedList *ll, LinkedList *resultFrontList, LinkedList *resultBackList)
 {
 	/* add your code here */
+	if (ll->head == NULL) return;
+
+	ListNode *front = ll->head, *back = ll->head;
+
+	// back이 중간
+	while (back != NULL && back->next != NULL) {
+		front = front->next;
+		back = back->next->next;
+	}
+
+	if (ll->size % 2 == 0) {
+		back = front;
+		findNode(ll, (ll->size / 2) - 1)->next = NULL;
+		front = ll->head;
+	}
+	else {
+		back = front->next;
+		front->next = NULL;
+		front = ll->head;
+	}
+
+	resultFrontList->head = front;
+	resultBackList->head = back;
+
+	int count = 0;
+	while (front != NULL) {
+		front = front->next;
+		count++;
+	}
+	resultFrontList->size = count;
+
+	count = 0;
+	while (back != NULL) {
+		back = back->next;
+		count++;
+	}
+	resultBackList->size = count;
+
+	ll->head = NULL;
+	ll->size = 0;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
