@@ -114,6 +114,7 @@ int main()
 void createStackFromLinkedList(LinkedList *ll, Stack *s)
 {
     /* add your code here */
+	removeAllItemsFromStack(s);
 	ListNode* temp = ll->head;
 	while (temp != NULL){
 		push(s, temp->item);
@@ -126,8 +127,7 @@ void removeEvenValues(Stack *s)
 {
 	/* add your code here */
 	Stack s_temp;
-	LinkedList* ll = malloc(sizeof(LinkedList));
-	s_temp.ll = *ll;
+	s_temp.ll.head = NULL;
 	(s_temp.ll).size = 0;
 
 	while (!isEmptyStack(s)){
@@ -140,8 +140,6 @@ void removeEvenValues(Stack *s)
 	while (!isEmptyStack(&s_temp)) {
 		push(s, pop(&s_temp));
 	}
-
-	removeAllItems(ll);
 }
 
 //////////////////////////////////////////////////////////////////////////////////
