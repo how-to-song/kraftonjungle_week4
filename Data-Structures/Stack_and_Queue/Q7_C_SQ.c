@@ -104,7 +104,39 @@ int main()
 ////////////////////////////////////////////////////////////
 int balanced(char *expression)
 {
-/* add your code here */
+	/* add your code here */
+	if (expression == NULL) {
+		return 1;
+	}
+
+	char pairs[3][2] = {{'(', ')'}, {'{', '}'}, {'[', ']'}};
+
+	Stack s;
+	s.ll.head = NULL;
+	s.ll.size = 0;
+
+	int isUnbalanced = 0;
+
+	for (int i = 0; expression[i] != '\0' && isUnbalanced == 0; i++) {
+		for (int j = 0; j < 3; j++) {
+			if(expression[i] == pairs[j][0]) push(&s, expression[i]);
+		}
+		for (int k = 0; k < 3; k++) {
+			if(expression[i] == pairs[k][1]) {
+				if(pairs[k][0] == peek(&s)){
+					pop(&s);
+					break;
+				}
+				else {
+					isUnbalanced = 1;
+				}
+			}
+		}
+	}
+	
+	if (!isEmptyStack(&s)) isUnbalanced = 1;
+	removeAllItemsFromStack(&s);
+	return isUnbalanced;
 }
 
 ////////////////////////////////////////////////////////////
