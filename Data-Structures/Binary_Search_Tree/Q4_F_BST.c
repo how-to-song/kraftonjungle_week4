@@ -91,7 +91,27 @@ int main()
 
 void postOrderIterativeS1(BSTNode *root)
 {
-	 /* add your code here */
+	/* add your code here */
+	Stack s = { NULL };
+	BSTNode *curr = root, *lastVisited = NULL;
+
+	while (curr != NULL || !isEmpty(&s))
+	{
+		while(curr != NULL) {
+			push(&s, curr);
+			curr = curr->left;
+		}
+		BSTNode *top = peek(&s);
+		if (top->right != NULL && top->right != lastVisited){
+			curr = top->right;
+		} 
+		else {
+			printf("%d ",top->item);
+			lastVisited = pop(&s);
+		}
+	}
+	
+
 }
 
 ///////////////////////////////////////////////////////////////////////////////
