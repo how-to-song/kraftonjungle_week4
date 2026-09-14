@@ -87,23 +87,30 @@ int main()
 void moveOddItemsToBack(LinkedList *ll)
 {
 	/* add your code here */ 
-	ListNode evenDummy = {0, NULL}, oddDummy = {0, NULL};
-	ListNode *evenTail = &evenDummy, *oddTail = &oddDummy;
+	ListNode oddDummy = { 0, NULL }, evenDummy = { 0, NULL };
+	ListNode *oddCurr = &oddDummy;
+	ListNode *evenCurr = &evenDummy;
 
-	for(ListNode *curr = ll->head; curr != NULL; curr = curr->next) {
-		if (curr->item % 2 != 0) {
-			oddTail->next = curr;
-			oddTail = oddTail->next;
+	ListNode *curr = ll->head;
+
+	while (curr != NULL)
+	{
+		if(curr->item % 2 != 0) {
+			oddCurr->next = curr;
+			oddCurr = oddCurr->next;
 		}
 		else {
-			evenTail->next = curr;
-			evenTail = evenTail->next;
+			evenCurr->next = curr;
+			evenCurr = evenCurr->next;
 		}
+
+		curr = curr->next;
 	}
 
-	oddTail->next = NULL;
-	evenTail->next = oddDummy.next;
-	ll->head= evenDummy.next;
+	oddCurr->next = NULL;
+
+	evenCurr->next = oddDummy.next;
+	ll->head = evenDummy.next;
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
