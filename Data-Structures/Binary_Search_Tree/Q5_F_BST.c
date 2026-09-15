@@ -92,21 +92,42 @@ int main()
 void postOrderIterativeS2(BSTNode *root)
 {
 	/* add your code here */
+	// Stack s1 = { NULL };
+	// Stack s2 = { NULL };
+	// BSTNode *curr = root;
+
+	// while (curr != NULL || !isEmpty(&s1))
+	// {
+	// 	if (curr == NULL) {
+	// 		curr = pop(&s1);
+	// 	}
+	// 	push(&s2, curr);
+	// 	if(curr->left != NULL) push(&s1, curr->left);
+	// 	curr = curr->right;
+	// }
+	
+	// while(!isEmpty(&s2)){
+	// 	printf("%d ", pop(&s2)->item);
+	// }
+
+
 	Stack s1 = { NULL };
 	Stack s2 = { NULL };
-	BSTNode *curr = root;
 
-	while (curr != NULL || !isEmpty(&s1))
+	BSTNode *node = root;
+
+	while (node != NULL || !isEmpty(&s1))
 	{
-		if (curr == NULL) {
-			curr = pop(&s1);
+		if (node == NULL) {
+			node = pop(&s1);
 		}
-		push(&s2, curr);
-		if(curr->left != NULL) push(&s1, curr->left);
-		curr = curr->right;
+
+		push(&s2, node);
+		if(node->left != NULL) push(&s1, node->left);
+		node = node->right;
 	}
-	
-	while(!isEmpty(&s2)){
+
+	while(!isEmpty(&s2)) {
 		printf("%d ", pop(&s2)->item);
 	}
 }

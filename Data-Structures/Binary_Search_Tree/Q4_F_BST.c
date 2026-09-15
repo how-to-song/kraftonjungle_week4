@@ -91,27 +91,48 @@ int main()
 
 void postOrderIterativeS1(BSTNode *root)
 {
-	/* add your code here */
-	Stack s = { NULL };
-	BSTNode *curr = root, *lastVisited = NULL;
+	// /* add your code here */
+	// Stack s = { NULL };
+	// BSTNode *curr = root, *lastVisited = NULL;
 
-	while (curr != NULL || !isEmpty(&s))
-	{
-		while(curr != NULL) {
-			push(&s, curr);
-			curr = curr->left;
+	// while (curr != NULL || !isEmpty(&s))
+	// {
+	// 	while(curr != NULL) {
+	// 		push(&s, curr);
+	// 		curr = curr->left;
+	// 	}
+	// 	BSTNode *top = peek(&s);
+	// 	if (top->right != NULL && top->right != lastVisited){
+	// 		curr = top->right;
+	// 	} 
+	// 	else {
+	// 		printf("%d ",top->item);
+	// 		lastVisited = pop(&s);
+	// 	}
+	// }
+
+	Stack s = { NULL };
+	
+	BSTNode *node = root;
+	BSTNode *lastVisited = NULL;
+
+	while(node != NULL || !isEmpty(&s)) {
+		while (node != NULL)
+		{
+			push(&s, node);
+			node = node->left;
 		}
+		
 		BSTNode *top = peek(&s);
-		if (top->right != NULL && top->right != lastVisited){
-			curr = top->right;
-		} 
+
+		if (top->right != NULL && top->right != lastVisited) {
+			node = top->right;
+		}
 		else {
-			printf("%d ",top->item);
+			printf("%d ", top->item);
 			lastVisited = pop(&s);
 		}
 	}
-	
-
 }
 
 ///////////////////////////////////////////////////////////////////////////////
