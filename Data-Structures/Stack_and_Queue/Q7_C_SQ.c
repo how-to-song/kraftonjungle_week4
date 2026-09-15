@@ -105,38 +105,83 @@ int main()
 int balanced(char *expression)
 {
 	/* add your code here */
-	if (expression == NULL) {
-		return 1;
-	}
+	// if (expression == NULL) {
+	// 	return 1;
+	// }
 
-	char pairs[3][2] = {{'(', ')'}, {'{', '}'}, {'[', ']'}};
+	// char pairs[3][2] = {{'(', ')'}, {'{', '}'}, {'[', ']'}};
+
+	// Stack s;
+	// s.ll.head = NULL;
+	// s.ll.size = 0;
+
+	// int isUnbalanced = 0;
+
+	// for (int i = 0; expression[i] != '\0' && isUnbalanced == 0; i++) {
+	// 	for (int j = 0; j < 3; j++) {
+	// 		if(expression[i] == pairs[j][0]) push(&s, expression[i]);
+	// 	}
+	// 	for (int k = 0; k < 3; k++) {
+	// 		if(expression[i] == pairs[k][1]) {
+	// 			if(pairs[k][0] == peek(&s)){
+	// 				pop(&s);
+	// 				break;
+	// 			}
+	// 			else {
+	// 				isUnbalanced = 1;
+	// 			}
+	// 		}
+	// 	}
+	// }
+	
+	// if (!isEmptyStack(&s)) isUnbalanced = 1;
+	// removeAllItemsFromStack(&s);
+	// return isUnbalanced;
+
 
 	Stack s;
 	s.ll.head = NULL;
 	s.ll.size = 0;
 
-	int isUnbalanced = 0;
+	for(int i = 0; expression[i] != '\0'; i++) {
+		char c = expression[i];
 
-	for (int i = 0; expression[i] != '\0' && isUnbalanced == 0; i++) {
-		for (int j = 0; j < 3; j++) {
-			if(expression[i] == pairs[j][0]) push(&s, expression[i]);
-		}
-		for (int k = 0; k < 3; k++) {
-			if(expression[i] == pairs[k][1]) {
-				if(pairs[k][0] == peek(&s)){
-					pop(&s);
-					break;
+		if (c == '(' || c == '{' || c == '[') {
+			push(&s, c);
+		} else {
+			switch (c)
+			{
+			case ')':
+				if (peek(&s) != '(') {
+					removeAllItemsFromStack(&s);
+					return 1;
 				}
-				else {
-					isUnbalanced = 1;
+				break;
+			case '}':
+				if (peek(&s) != '{'){
+					removeAllItemsFromStack(&s);
+					return 1;
 				}
+				break;
+			case ']':
+				if (peek(&s) != '['){
+					removeAllItemsFromStack(&s);
+					return 1;
+				}
+				break;
+			default:
+				break;
 			}
+			pop(&s);
 		}
 	}
-	
-	if (!isEmptyStack(&s)) isUnbalanced = 1;
-	removeAllItemsFromStack(&s);
-	return isUnbalanced;
+
+	if (isEmptyStack(&s)) {
+		return 0;
+	} else {
+		removeAllItemsFromStack(&s);
+		return 1;
+	}
 }
 
 ////////////////////////////////////////////////////////////
